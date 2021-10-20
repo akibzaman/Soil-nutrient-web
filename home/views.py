@@ -187,8 +187,8 @@ def submitTestPage(request):
         B2Reft6 = float(request.POST['B2Reft6'])
         B2Reft7 = float(request.POST['B2Reft7'])
 
-        SoilTeam = int(request.POST['SoilTeam'])
-        LandClass = int(request.POST['LandClass'])
+        SoilTeam = int(request.POST['SoilTeam'])-1
+        LandClass = int(request.POST['LandClass'])-1
 
 
         test_list = [[B2Reft2, B2Reft3, B2Reft4, B2Reft5, B2Reft6, B2Reft7, SoilTeam, LandClass ]]
