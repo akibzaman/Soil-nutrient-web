@@ -6,7 +6,7 @@ import numpy as np
 
 import random
 
-file_path = 'home\dataset\Dataset_Update.csv'
+file_path = 'dataset\Dataset_Update.csv'
 data = pd.read_csv(file_path)
 
 # data.head()
@@ -54,7 +54,7 @@ def reflectancePage(request):
 # =============================================================================================
 # reflectance
 
-base_path_rf = 'home/reflectance'
+base_path_rf = 'reflectance'
 
 data_rf2 = pd.read_csv(base_path_rf+'/band2.csv')
 data_rf3 = pd.read_csv(base_path_rf+'/band3.csv')
@@ -243,7 +243,7 @@ def update_model(test_case):
 
     # train_feature=['B2Reft2','B3Reft3','B4Reft4','B5Reft5','B6Reft6','B7Reft7','Area','SoilTeam','LandClass']
 
-    base_path = "home/trained_model" #add your drive model folder path here
+    base_path = "trained_model" #add your drive model folder path here
     ####Evaluation with Random Sample
     model1= pickle.load(open(base_path+'/model_rf_Ph.pkl','rb'))
     model2= pickle.load(open(base_path+'/model_rf_K.pkl','rb'))
@@ -267,7 +267,7 @@ def update_model(test_case):
 def update_model_hybrid(test_case):
     # train_feature=['B2Reft2','B3Reft3','B4Reft4','B5Reft5','B6Reft6','B7Reft7','Area','SoilTeam','LandClass']
 
-    base_path = "home/hybrid_model" #add your drive model folder path here
+    base_path = "hybrid_model" #add your drive model folder path here
     ####Evaluation with Random Sample
     model1= pickle.load(open(base_path+'/Phosphorus-hybrid.pkl','rb'))
     model2= pickle.load(open(base_path+'/Potassium-hybrid.pkl','rb'))
