@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- for load static files -->
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Nutrients : Prediction</title>
+
+    <link rel="shortcut icon" href="{%static 'images/logo.ico' %}">
+    
+    <!-- Google Webfont -->
+	<link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- font-awesome v6 -->
+    <link href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}" rel="stylesheet">
+
+	<!-- Owl Carousel -->
+	<!-- <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet"> -->
+
+	<!-- Magnific Popup -->
+	<!-- <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet"> -->
+
+	<!-- Easy Responsive Tabs -->
+	<link href="{% static 'css/easy-responsive-tabs.css' %}" rel="stylesheet">
+
+	<!-- Theme Style -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- progress bar -->
+	<link href="{% static 'css/cssprogress.css' %}" rel="stylesheet">
+
+    <!-- sweetalert2 -->
+    <script src="{% static 'sweetalert2/dist/sweetalert2.all.js' %}"></script>
+    
+</head>
+<body>
+<body>
+    
+    <!-- Header -->
+    {% include 'module\header.html' %}
+    <!-- Header -->
+
+    <main role="main">
+            <!-- Start Intro -->
+            <div id="fh5co-intro">
+                <div class="container">
+                    <h5 class="col-md-4">Inspect your soil nutrients from satellite imagery !! </h5>
+                        <!-- <div class="row">
+                            <div class="col-md-12">
+                                <p style="text-align: justify;"> A machine learning based regression model
+                                    to predict basic soil nutrient.</p>
+                            </div>
+                        </div> -->
+                </div>
+            </div>
+            <!-- End Intro -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span>**NB. The value between 0 to 1.</span>
+                        <form id="test-form">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="B2Reft2" class="sr-only">B2Reft2</label>
+                                        <input placeholder="B2Reft2" id="B2Reft2" name="B2Reft2" type="number"  min="0" max="1" step="any" class="form-control input-sm" required>
+                                    </div>	
+                                </div>
+    
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="B2Reft3" class="sr-only">B2Reft3</label>
+                                        <input placeholder="B2Reft3" id="B2Reft3" name="B2Reft3" type="number"  min="0" max="1" step="any" class="form-control input-sm" required>
+                                    </div>	
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="B2Reft4" class="sr-only">B2Reft4</label>
+                                        <input placeholder="B2Reft4" id="B2Reft4" name="B2Reft4" type="number"  min="0" max="1" step="any" class="form-control input-sm" required>
+                                    </div>	
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="B2Reft5" class="sr-only">B2Reft5</label>
+                                        <input placeholder="B2Reft5" id="B2Reft5" name="B2Reft5" type="number"  min="0" max="1" step="any" class="form-control input-sm" required>
+                                    </div>	
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="B2Reft6" class="sr-only">B2Reft6</label>
+                                        <input placeholder="B2Reft6" id="B2Reft6" name="B2Reft6" type="number"  min="0" max="1" step="any" class="form-control input-sm" required>
+                                    </div>	
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="B2Reft7" class="sr-only">B2Reft7</label>
+                                        <input placeholder="B2Reft7" id="B2Reft7" name="B2Reft7" type="number"  min="0" max="1" step="any" class="form-control input-sm" required>
+                                    </div>	
+                                </div>    
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="soilTeam" class="sr-only">SoilTeam</label>
+                                        <select class="form-control input-sm" id="soilTeam" name="soilTeam" required>
+                                            <option value="">--Select SoilTeam--</option>
+                                            {% for x in group_soil %}
+                                                <option value="{{forloop.counter}}">{{x}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>	
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="landClass" class="sr-only">LandClass</label>
+                                        <select class="form-control input-sm" id="landClass" name="landClass" required>
+                                            <option value="">--Select LandClass--</option>
+                                            {% for x in group_land %}
+                                                <option value="{{forloop.counter}}">{{x}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>	
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" style="margin-left: -16px;">
+                                <!-- <div class="fh5co-spacer"></div> -->
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-md" value="Check">
+
+                                    <input type="reset" class="btn btn-outline btn-md" value="Reset" onclick="clearResults()">
+                                </div>	
+                            </div>
+                            
+                        </form>	
+                    </div>
+
+                    <div class="col-md-8 result-container" >
+                        <h5>Results:</h5>
+                        <div id="the-results" class="table">
+                            <table class="table table-bordered" id="result-table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" style="display: none;">Area</th>
+                                    <th scope="col" style="display: none;">Percentage</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row" colspan="2">**No Results search yet.</td>
+                                    </tr>
+                                
+    
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <!-- Form -->
+
+
+            <!-- Start Pre Code -->
+            
+            <div class="container">
+                
+            </div>				
+            <!-- End Pre Code -->
+
+            <div class="fh5co-spacer fh5co-spacer-md"></div>
+    
+            <!-- Start  Let's Chat -->
+            <!-- {% include 'module\contact.html' %} -->
+            <!-- End  Let's Chat -->
+            <div class="fh5co-spacer fh5co-spacer-sm"></div>
+
+    </main>
+
+    <!-- footer section -->
+    <!-- <div id="content">{% include 'module\footer.html' %}</div> -->
+    <!-- footer section --> 
+
+    
+    
+    <!-- Go To Top -->
+    <a href="#" class="fh5co-gotop"><i class="ti-shift-left"></i></a>
+    
+        
+    <!-- jQuery -->
+    <!-- <script src="{%static 'js/jquery-1.10.2.min.js' %}"></script> -->
+    <script src="{%static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{%static 'js/jquery-3.5.1.js' %}"></script>
+    <!-- jQuery Easing -->
+    <script src="{%static 'js/jquery.easing.1.3.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{%static 'js/bootstrap.js' %}"></script>
+    <!-- Owl carousel -->
+    <script src="{%static 'js/owl.carousel.min.js' %}"></script>
+    <!-- Magnific Popup -->
+    <script src="{%static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Easy Responsive Tabs -->
+    <script src="{%static 'js/easyResponsiveTabs.js' %}"></script>
+    <!-- FastClick for Mobile/Tablets -->
+    <script src="{%static 'js/fastclick.js' %}"></script>
+    <!-- Velocity -->
+    <script src="{%static 'js/velocity.min.js' %}"></script>
+    
+    <!-- Main JS -->
+    <script src="{%static 'js/main.js' %}"></script>
+
+    <!-- ajax works to load data from model without reload the data -->
+    {% csrf_token %}
+    <script type="text/javascript">
+
+        $(document).on('submit','#test-form', function(e){
+            e.preventDefault();
+            $.ajax({
+                headers: {
+                    
+                },
+                type:'POST',
+                url: '/submitTest',
+                data:{
+                    B2Reft2:$('#B2Reft2').val(),
+                    B2Reft3:$('#B2Reft3').val(),
+                    B2Reft4:$('#B2Reft4').val(),
+                    B2Reft5:$('#B2Reft5').val(),
+                    B2Reft6:$('#B2Reft6').val(),
+                    B2Reft7:$('#B2Reft7').val(),
+                    // Area:$('#area').val(),
+                    SoilTeam:$('#soilTeam').val(),
+                    LandClass:$('#landClass').val(),
+                    csrfmiddlewaretoken:document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                success: function(response){
+                    // console.log(response);
+                    var data = response["data"];
+                    $("tbody").children().remove(); 
+
+                    for(var i = 1; i <= data.length; i++) {
+                        var feature_name = data[i-1][0];
+                        var feature_percentage = data[i-1][1];
+                        var feature_color = data[i-1][2];
+                        var width_percent = data[i-1][3];
+
+                        markup = '<tr>'+
+                                    '<td style="width:20%">'+feature_name+'</td>'+
+                                    '<td style="width:80%">'+
+                                        '<div class="cssProgress">'+
+                                            '<div class="progress3">'+
+                                              '<div class="cssProgress-bar '+ feature_color +'" data-percent="'+feature_percentage+'" style="width: '+width_percent+'%;">'+
+                                                '<span class="cssProgress-label">'+feature_percentage+'%</span>'+
+                                              '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</td>'+
+                                '</tr>';
+                        
+                        tableBody = $("table tbody");
+                        tableBody.append(markup);
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Result showed',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+
+                    
+
+                },
+                error: function(response){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                    });
+                }
+            });
+        });
+    
+    </script>
+    <!-- clear data with table -->
+    <script type="text/javascript">
+        function clearResults(){
+            $("tbody").children().remove();
+            markup = "<tr>"+
+                        "<td scope=\"row\" colspan=\"6\">**No Results search yet.</td>" +
+                    "</tr>";
+            tableBody = $("table tbody");
+            tableBody.append(markup);
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Rest complete',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    </script>
+
+    <!-- Progress bar -->
+    <script src="{%static 'js/progressbar.js' %}"></script>
+
+
+</body>
+    
+</body>
+</html>

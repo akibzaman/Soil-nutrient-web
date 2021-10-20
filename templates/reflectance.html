@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- for load static files -->
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Nutrients : Test</title>
+
+    <link rel="shortcut icon" href="{%static 'images/logo.ico' %}">
+    
+    <!-- Google Webfont -->
+	<link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+	<!-- Themify Icons -->
+	<link href="{% static 'css/themify-icons.css' %}" rel="stylesheet">
+	<!-- Icomoon Icons -->
+	<link href="{% static 'css/icomoon-icons.css' %}" rel="stylesheet">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- font-awesome v6 -->
+    <link href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}" rel="stylesheet">
+
+	<!-- Owl Carousel -->
+	<!-- <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet"> -->
+
+	<!-- Magnific Popup -->
+	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet">
+
+	<!-- Easy Responsive Tabs -->
+	<link href="{% static 'css/easy-responsive-tabs.css' %}" rel="stylesheet">
+
+	<!-- Theme Style -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- content slider -->
+	<link href="{% static 'css/contentSlider.css' %}" rel="stylesheet">
+
+    <!-- progress bar -->
+	<!-- <link href="{% static 'css/cssprogress.css' %}" rel="stylesheet"> -->
+
+
+    <!-- google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- sweetalert2 -->
+    <script src="{% static 'sweetalert2/dist/sweetalert2.all.js' %}"></script>
+
+</head>
+<body>
+<body>
+    
+    <!-- Header -->
+    {% include 'module\header.html' %}
+    <!-- Header -->
+
+    <main role="main">
+            <!-- Start Intro -->
+            <div id="fh5co-intro">
+                <div class="container">
+                    <h5 class="col-md-4">Variation of Bands vs soil nutrients</h5>
+                    <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <p style="text-align: justify;"> A machine learning based regression model
+                                        to predict basic soil nutrient.</p>
+                                </div>
+                            </div> -->
+                </div>
+            </div>
+            <!-- End Intro -->
+
+            <!-- Form -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- <h4>Reflectance Range?</h4> -->
+                        <span>**NB. The value between 0 to 1.</span>
+                        <form id="test-form">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="From" class="sr-only">From</label>
+                                        <input placeholder="From" id="From" name="From" type="number" min="0" max="1" step="any" class="form-control input-lg" required>
+                                    </div>	
+                                </div>
+    
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="To" class="sr-only">To</label>
+                                        <input placeholder="To" id="To" name="To" type="number" min="0" max="1" step="any" class="form-control input-lg" required>
+                                    </div>	
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12" style="margin-left: -16px;">
+                                <!-- <div class="fh5co-spacer"></div> -->
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-md" value="Submit">
+
+                                    <input type="reset" class="btn btn-outline btn-md" value="Reset" onclick="clearResults()">
+                                </div>	
+                            </div>
+                            
+                        </form>	
+                    </div>
+
+                    <div class="col-md-8 result-container">
+                        <h5>Results:</h5>
+                        <div id="the-results" class="table">
+                            <table class="table table-bordered" id="result-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" style="display: none;">Area</th>
+                                    <th scope="col" style="display: none;">Percentage</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row" colspan="2">**No Results search yet.</td>
+                                    </tr>
+                            
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <!-- add content slider -->
+
+                        <!-- <div id="loader" style="display: none;"></div> -->
+                        <div id="graph_area_reset">
+
+                            <div id="graph_area" style="display: none;">
+                                <div class="slideshow-container">
+                                    <div class="mySlides"><div id="band2" ></div></div>
+                                    <div class="mySlides"><div id="band3" ></div></div>
+                                    <div class="mySlides"><div id="band4" ></div></div>
+                                    <div class="mySlides"><div id="band5" ></div></div>
+                                    <div class="mySlides"><div id="band6" ></div></div>
+                                    <div class="mySlides"><div id="band7" ></div></div>
+                                    <a class="prev" onclick="plusSlides(-1)">❮</a>
+                                    <a class="next" onclick="plusSlides(1)">❯</a>
+                                </div>
+
+
+                                <div class="dot-container">
+                                    <span class="dot" onclick="currentSlide(1)"></span> 
+                                    <span class="dot" onclick="currentSlide(2)"></span> 
+                                    <span class="dot" onclick="currentSlide(3)"></span> 
+                                    <span class="dot" onclick="currentSlide(4)"></span> 
+                                    <span class="dot" onclick="currentSlide(5)"></span> 
+                                    <span class="dot" onclick="currentSlide(6)"></span> 
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                    
+                </div>
+
+            </div>
+            <!-- Form -->
+
+            <!-- <div class="fh5co-spacer fh5co-spacer-md"></div> -->
+    
+            <!-- Start  Let's Chat -->
+            <!-- {% include 'module\contact.html' %} -->
+            <!-- End  Let's Chat -->
+            <!-- <div class="fh5co-spacer fh5co-spacer-sm"></div> -->
+
+    </main>
+
+    <!-- footer section -->
+    <!-- <div id="content">{% include 'module\footer.html' %}</div> -->
+    <!-- footer section --> 
+
+
+    
+    
+    <!-- Go To Top -->
+    <a href="#" class="fh5co-gotop"><i class="ti-shift-left"></i></a>
+        
+    <!-- jQuery -->
+    <!-- <script src="{%static 'js/jquery-1.10.2.min.js' %}"></script> -->
+    <script src="{%static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{%static 'js/jquery-3.5.1.js' %}"></script>
+    <!-- jQuery Easing -->
+    <script src="{%static 'js/jquery.easing.1.3.js' %}"></script>
+    <!-- Bootstrap -->
+    <!-- <script src="{%static 'js/bootstrap.js' %}"></script> -->
+	<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- Owl carousel -->
+    <script src="{%static 'js/owl.carousel.min.js' %}"></script>
+    <!-- Magnific Popup -->
+    <script src="{%static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Easy Responsive Tabs -->
+    <script src="{%static 'js/easyResponsiveTabs.js' %}"></script>
+    <!-- FastClick for Mobile/Tablets -->
+    <script src="{%static 'js/fastclick.js' %}"></script>
+    <!-- Velocity -->
+    <script src="{%static 'js/velocity.min.js' %}"></script>
+    
+    <!-- Main JS -->
+    <script src="{%static 'js/main.js' %}"></script>
+
+    <!-- ajax works to load data from model without reload the data -->
+    {% csrf_token %}
+    <script type="text/javascript">
+
+        window.band2_global = []
+        $(document).on('submit','#test-form', function(e){
+            e.preventDefault();
+            $.ajax({
+                headers: {
+                    
+                },
+                type:'POST',
+                url: '/submitReflectance',
+                data:{
+                    From:$('#From').val(),
+                    To:$('#To').val(),
+                    csrfmiddlewaretoken:document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                success: function(response){
+                    // to remove not found row.
+                    $("tbody").children().remove(); 
+                    document.getElementById("graph_area").style.display = "";
+                    // document.getElementById('graph_area_reset').style.display = "";
+
+                    var data2 = response["band2"];
+                    var data3 = response["band3"];
+                    var data4 = response["band4"];
+                    var data5 = response["band5"];
+                    var data6 = response["band6"];
+                    var data7 = response["band7"];
+
+                    var band2_global = data2;
+
+                    show_graph_material(data2, "Band2 Reflectance" , "B2Reft2", 'band2');
+                    show_graph_material(data3, "Band3 Reflectance" , "B3Reft3", 'band3');
+                    show_graph_material(data4, "Band4 Reflectance" , "B4Reft4", 'band4');
+                    show_graph_material(data5, "Band5 Reflectance" , "B5Reft5", 'band5');
+                    show_graph_material(data6, "Band6 Reflectance" , "B6Reft6", 'band6');
+                    show_graph_material(data7, "Band7 Reflectance" , "B7Reft7", 'band7');
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Result showed',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                },
+                error: function(response){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                    });
+                }
+            });
+            
+        });
+
+    
+    </script>
+    <!-- clear data with table -->
+    <script type="text/javascript">
+        function clearResults(){
+
+            $("tbody").children().remove();
+            markup = "<tr>"+
+                        "<td scope=\"row\" colspan=\"2\">**No Results search yet.</td>" +
+                    "</tr>";
+            tableBody = $("table tbody");
+            tableBody.append(markup);
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Rest complete',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    </script>
+
+    <script>
+        var slideIndex = 1;
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "";  
+            dots[slideIndex-1].className += " active";
+        }
+    </script>
+
+
+    <!-- line chart : material design -->
+    <script>
+        function show_graph_material(data_list, title_val, sub_title_val, div_id){
+
+            
+            google.charts.load('current', {'packages':['line']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'reflectance');
+                data.addColumn('number', 'Phosphorus');
+                data.addColumn('number', 'Potassium');
+                data.addColumn('number', 'Boron');
+                data.addColumn('number', 'Calcium');
+                data.addColumn('number', 'Magnesium');
+                data.addColumn('number', 'Manganese');
+
+                data.addRows(data_list);
+                var options = {
+                    chart: {
+                        title: title_val,
+                        // subtitle: sub_title_val
+                    },
+                    height: 400,
+
+                    hAxis: {
+                        title: 'Reflectance',
+                        titleTextStyle : {
+                            fontSize: 13,
+                            bold: true, 
+                            
+                        }
+                    },
+                    vAxis: {
+                        title: 'Amount of Nutrients',
+                        titleTextStyle : {
+                            fontSize: 13,
+                            bold: true, 
+                        }
+                    },
+                    // titleTextStyle: { fontSize: 18 , alignment:'center'},
+                    // titlePosition: 'middle',
+                    legend: { 
+                        position: 'bottom',
+                        textStyle: { fontSize: 12}
+                    },
+                };
+                var chart = new google.charts.Line(document.getElementById(div_id));
+                chart.draw(data, google.charts.Line.convertOptions(options));
+            }
+
+        }
+
+        function show_graph_material(data_list, title_val, sub_title_val, div_id){
+
+            // console.log(div_id);
+            // console.log(data_list);
+            
+            // google.charts.load('current', {'packages':['line']});
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'reflectance');
+                data.addColumn('number', 'Phosphorus');
+                data.addColumn('number', 'Potassium');
+                data.addColumn('number', 'Boron');
+                data.addColumn('number', 'Calcium');
+                data.addColumn('number', 'Magnesium');
+                data.addColumn('number', 'Manganese');
+
+                data.addRows(data_list);
+                var options = {
+                    chart: {
+                        title: title_val,
+                        // subtitle: sub_title_val
+                    },
+                    height: 400,
+
+                    hAxis: {
+                        title: 'Reflectance',
+                        titleTextStyle : {
+                            fontSize: 13,
+                            bold: true, 
+                            
+                        }
+                    },
+                    vAxis: {
+                        title: 'Amount of Nutrients',
+                        titleTextStyle : {
+                            fontSize: 13,
+                            bold: true, 
+                        }
+                    },
+                    // titleTextStyle: { fontSize: 18 , alignment:'center'},
+                    // titlePosition: 'middle',
+                    legend: { 
+                        position: 'bottom',
+                        textStyle: { fontSize: 12}
+                    },
+                };
+                var chart = new google.charts.Line(document.getElementById(div_id));
+
+                document.getElementById("graph_area").style.display = "";
+                chart.draw(data, google.charts.Line.convertOptions(options));
+            }
+
+        }
+        
+    </script>
+
+    
+
+<!-- content slider -->
+
+</body>
+    
+</body>
+</html>

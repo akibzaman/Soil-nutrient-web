@@ -1,0 +1,71 @@
+{% load static %}
+<header id="fh5co-header" role="banner">
+    <div class="container">
+        <!-- Logo -->
+        <div id="fh5co-logo">
+            <a href="/">
+                <img src="{%static 'images/logo.png' %}" alt="Work Logo">
+            </a>
+
+        </div>
+        <!-- Logo -->
+        
+        <!-- Mobile Toggle Menu Button -->
+        <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+        
+        <!-- Main Nav -->
+        <div id="fh5co-main-nav">
+            <nav id="fh5co-nav" role="navigation">
+                <ul>
+                    <!-- index active -->
+                    {% if page_info == 1 %}
+                        <li class="fh5co-active">
+                            <a href="/">Home</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                    {% endif %}
+
+                     <!-- prediction active -->
+                    {% if page_info == 2 %}
+                        <li class="fh5co-active">
+                            <a href="/prediction">Prediction Model</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/prediction">Prediction Model</a>
+                        </li>
+                    {% endif %}
+
+                    <!-- team active -->
+                    <!-- {% if page_info == 3 %}
+                        <li class="fh5co-active">
+                            <a href="/team">Team</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/team">Team</a>
+                        </li>
+                    {% endif %} -->
+
+                   
+                    <!-- Reflectance active -->
+                    {% if page_info == 4 %}
+                        <li class="fh5co-active">
+                            <a href="/reflectance">Visualization</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/reflectance">Visualization</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+                <a href="/prediction" class="fh5co-nav-call-to-action js-fh5co-nav-call-to-action">Get Started</a>
+            </nav>
+        </div>
+        <!-- Main Nav -->
+    </div>
+</header>

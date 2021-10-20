@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- for load static files -->
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Nutrients : Home </title>
+
+    <link rel="shortcut icon" href="{%static 'images/logo.ico' %}">
+
+    <!-- Google Webfont -->
+	<link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+	<!-- Themify Icons -->
+	<link href="{% static 'css/themify-icons.css' %}" rel="stylesheet">
+	<!-- Icomoon Icons -->
+	<link href="{% static 'css/icomoon-icons.css' %}" rel="stylesheet">
+
+
+    <!-- Bootstrap CSS -->
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- font-awesome v6 -->
+	<link href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}" rel="stylesheet">
+
+
+	<!-- Owl Carousel -->
+	<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet">
+
+	<!-- Magnific Popup -->
+	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet">
+
+	<!-- Easy Responsive Tabs -->
+	<link href="{% static 'css/easy-responsive-tabs.css' %}" rel="stylesheet">
+
+	<!-- Theme Style -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>		
+    <!-- Header -->
+    {% include 'module\header.html' %}
+    <!-- Header -->
+
+    <main role="main">
+        <!-- Start Intro -->
+        <div id="fh5co-intro">
+            <div class="container">
+                <h4 >Soil Nutrients Prediction</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="text-align: justify;"> A machine learning based regression model
+                                to predict basic soil nutrient.</p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <!-- End Intro -->
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <!-- Start SLIDER -->
+				<div id="js-fh5co-slider" >
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="owl-carousel owl-carousel-fullwidth animated slide-container" id="owl_slideshow">
+								    <div class="item"><img src="{%static 'images/img_large_1.jpg' %}" alt="image"></div>
+								    <div class="item"><img src="{%static 'images/img_large_2.jpg' %}" alt="image"></div>
+								    <div class="item"><img src="{%static 'images/img_large_3.jpg' %}" alt="image"></div>
+								    <div class="item"><img src="{%static 'images/img_large_4.jpg' %}" alt="image"></div>
+								    <div class="item"><img src="{%static 'images/img_large_5.jpg' %}" alt="image"></div>
+								    <div class="item"><img src="{%static 'images/img_large_6.jpg' %}" alt="image"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End SLIDER -->
+                <div class="col-md-12" style="height: 50px;">
+                    
+                </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h2 class="h4">Data Collection</h2>
+                    <p style="text-align: justify;">We collectes images from the Landsat-8 satellite. It contains two sensors, first sensor collects 6 bands multi-spectral imagery at
+                        30-meter resolution, as well as panchromatic imagery at 15-meter. And second sensor
+                        collects thermal imagery at 100 meters resolution. Images were obtained from 2020 to 2021.</p>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h2 class="h4">Pre-Processing</h2>
+                    <p style="text-align: justify;">Collect the relevant data from `DIVA GIS’ website before
+                        using the ArcMap software on your PC. Example: The `BangladeshMap.shp’
+                        data can be downloaded by selecting `Bangladesh’ and `Administrative areas’ as the subject. From the ArcToolbox shelf, choose and click’ <br>
+                        Analyst Tools → Extraction → Extractbymask.
+                        </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="fh5co-spacer fh5co-spacer-md"></div> -->
+        <!-- Start Intro -->
+        <div id="fh5co-intro">
+            <div class="container">
+                <h4>What is our goal?</h4>
+                    <div class="row">
+                        <div class="col-md-12 col-md-push-0">
+                            <p style="text-align: justify;" > Our objective is to produce a good online application that will allow farmers to
+                                correctly use their property and improve their soil. </p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <!-- End Intro -->
+
+        <!-- <div class="fh5co-spacer fh5co-spacer-md"></div> -->
+        
+        <!-- Start  Let's Chat -->
+        <!-- {% include 'module\contact.html' %} -->
+        <!-- End  Let's Chat -->
+        <!-- <div class="fh5co-spacer fh5co-spacer-sm"></div> -->
+
+    </main>
+
+    <!-- footer section -->
+    <!-- <div id="content">{% include 'module\footer.html' %}</div> -->
+    <!-- footer section --> 
+
+    
+    
+    <!-- Go To Top -->
+    <a href="#" class="fh5co-gotop"><i class="ti-shift-left"></i></a>
+    
+        
+    <!-- jQuery -->
+    <script src="{%static 'js/jquery-1.10.2.min.js' %}"></script>
+    <!-- jQuery Easing -->
+    <script src="{%static 'js/jquery.easing.1.3.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{%static 'js/bootstrap.js' %}"></script>
+    <!-- Owl carousel -->
+    <script src="{%static 'js/owl.carousel.min.js' %}"></script>
+
+    <!-- Magnific Popup -->
+    <script src="{%static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Easy Responsive Tabs -->
+    <script src="{%static 'js/easyResponsiveTabs.js' %}"></script>
+    <!-- FastClick for Mobile/Tablets -->
+    <script src="{%static 'js/fastclick.js' %}"></script>
+    <!-- Velocity -->
+    <script src="{%static 'js/velocity.min.js' %}"></script>
+    
+    <!-- Main JS -->
+    <script src="{%static 'js/main.js' %}"></script>
+
+
+  
+</body>
+</html>
