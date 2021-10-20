@@ -238,8 +238,6 @@ def submitTestPage(request):
 
 
 ##=========================================================================
-
-
 import pickle
 def update_model(test_case):
 
@@ -277,7 +275,10 @@ def update_model_hybrid(test_case):
     model4= pickle.load(open(base_path+'/Calcium-hybrid.pkl','rb'))
     model5= pickle.load(open(base_path+'/Manesium-hybrid.pkl','rb'))
     model6= pickle.load(open(base_path+'/Manganese-hybrid.pkl','rb'))
-    
+
+    # test_case=[[0.14,0.14,0.14,0.14,0.14,0.14,0,2,2]]
+    # test_case=pd.DataFrame(test_case, columns = train_feature )
+    # print(test_case)
     Ph_pred = model1.predict(test_case)
     K_pred = model2.predict(test_case)
     B_pred = model3.predict(test_case)
@@ -285,4 +286,6 @@ def update_model_hybrid(test_case):
     Mg_pred = model5.predict(test_case)
     Mn_pred = model6.predict(test_case)
     return [Ph_pred[0],K_pred[0],B_pred[0],Ca_pred[0],Mg_pred[0],Mn_pred[0]]
+
+
 
