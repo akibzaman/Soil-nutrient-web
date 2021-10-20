@@ -270,7 +270,7 @@ def update_model(test_case):
 def update_model_hybrid(test_case):
     # train_feature=['B2Reft2','B3Reft3','B4Reft4','B5Reft5','B6Reft6','B7Reft7','Area','SoilTeam','LandClass']
 
-    base_path = "hybrid_model" #add your drive model folder path here
+    base_path = "home/hybrid_model" #add your drive model folder path here
     ####Evaluation with Random Sample
     model1= pickle.load(open(base_path+'/Phosphorus-hybrid.pkl','rb'))
     model2= pickle.load(open(base_path+'/Potassium-hybrid.pkl','rb'))
