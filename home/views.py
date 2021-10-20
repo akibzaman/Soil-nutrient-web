@@ -6,18 +6,20 @@ import numpy as np
 
 import random
 
-file_path = 'dataset\Dataset_Update.csv'
-data = pd.read_csv(file_path)
+# file_path = 'dataset\Dataset_Update.csv'
+# data = pd.read_csv(file_path)
 
-# data.head()
+# # data.head()
 
-# set all the group data globaly
-group_soil = data.groupby(['SoilTeam']).size().reset_index(name='count')
-group_soil = group_soil['SoilTeam'][:].values.tolist()
+# # set all the group data globaly
+# group_soil = data.groupby(['SoilTeam']).size().reset_index(name='count')
+# group_soil = group_soil['SoilTeam'][:].values.tolist()
 
-group_land = data.groupby(['LandClass']).size().reset_index(name='count')
-group_land = group_land['LandClass'][:].values.tolist()
+# group_land = data.groupby(['LandClass']).size().reset_index(name='count')
+# group_land = group_land['LandClass'][:].values.tolist()
 
+group_soil =[[Ethel,EthelLoam,Loam,Sandy,SandyLoam]]
+group_land =[[DMEL,HL,LL,MEL,MLL,SMEL]]
 
 # ============================================================================
 # views start here
