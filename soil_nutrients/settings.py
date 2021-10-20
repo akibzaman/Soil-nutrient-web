@@ -14,14 +14,15 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'l4+cknc5)o7yzjf8!xmocj3z9u0@0a9ux9kw_u-!b3%3llsl&g'
+#os.environ['SECRET_KEY']
 #'l4+cknc5)o7yzjf8!xmocj3z9u0@0a9ux9kw_u-!b3%3llsl&g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -116,12 +117,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATIC_ROOT= BASE_DIR / 'static'
+#STATIC_ROOT= BASE_DIR / 'static'
 
 import os
 STATICFILES_DIRS = [
