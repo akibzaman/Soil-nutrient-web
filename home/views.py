@@ -3,6 +3,7 @@
 
 import pandas as pd  
 import numpy as np
+import os
 
 import random
 
@@ -55,8 +56,8 @@ def reflectancePage(request):
 
 # =============================================================================================
 # reflectance
-
-base_path_rf = 'reflectance'
+#os.path.join(BASE_DIR, 'reflectance')
+base_path_rf = 'home/reflectance'
 
 data_rf2 = pd.read_csv(base_path_rf+'/band2.csv')
 data_rf3 = pd.read_csv(base_path_rf+'/band3.csv')
